@@ -1,16 +1,17 @@
+// This SandwichMaker IIFE augments the original one
 var SandwichMaker = (function(maker) {
 
   // Private variable to store the different meat prices
-  var condimentPrices = {
-  	"Mustard": 0.15,
-  	"Mayo": 0.15,
-  	"Chiptole Sauce": 0.15,
-  	"Horseradish": .15
-  	"Basil Pesto": 0.20,
-  };
+  var breadPrices = {
+  	"Ciabatta" : 0.40,
+  	"Whole Grain" : 0.25,
+  	"Honey Wheat" : 0.25,
+  	"White" : 0.25,
+  	"Rye" : .35
+  }
 
   // Augment the original object with another method
-  maker.addCondiment = function() {
+  maker.addBread = function(valueSelectedByUsser) {
     return ???;
   };
 

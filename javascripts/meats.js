@@ -2,10 +2,16 @@
 var SandwichMaker = (function(maker) {
 
   // Private variable to store the different meat prices
-  var meatPrices;
+  var meatPrices = {
+  	"Bacon" : 1.50,
+  	"Turkey" : .90,
+  	"Ham" : .90,
+  	"Roast Beef" : 1.15,
+  	"Salami" : 1.00
+  };
 
-  // Augment the original object with another method
-  maker.addMeat = function() {
+  // Augment the original objesct with another method
+  maker.addMeat = function(valueSelectedByUser) {
     return ???;
   };
 
