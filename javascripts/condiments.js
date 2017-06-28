@@ -5,15 +5,27 @@ var SandwichMaker = (function(maker) {
   	"Mustard": 0.15,
   	"Mayo": 0.15,
   	"Chiptole Sauce": 0.15,
-  	"Horseradish": .15
+  	"Horseradish": .15,
   	"Basil Pesto": 0.20,
   };
 
+  let condiments = Object.create(null);
+
+  condiments.returnCondimentNames = function() {
+  	let condiments = [];
+  	for (key in condimentPrices) {
+  		condiments.push(key);
+  	}
+  	return condiments;
+  }
   // Augment the original object with another method
-  maker.addCondiment = function() {
-    return ???;
+  condiments.addCondiment = function() {
+    return;
   };
 
+
+
+  maker.Condiments = condiments;
   // Return the new, augmented object with the new method on it
   return maker;
-})(SandwichMaker);
+})(SandwichMaker || {});
