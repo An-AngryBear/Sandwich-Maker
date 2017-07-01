@@ -19,8 +19,8 @@ var SandwichMaker = (function(maker) {
   	return breads;
 	}
   // Augment the original object with another method
-	bread.addBread = function(valueSelectedByUsser) {
-    	return;
+	bread.addBread = function(ingredientSelected) {
+    	return breadPrices[ingredientSelected];
     };
 	maker.Bread = bread;
   // Return the new, augmented object with the new method on it

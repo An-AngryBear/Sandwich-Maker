@@ -19,8 +19,8 @@ var SandwichMaker = (function(maker) {
   	return condiments;
   }
   // Augment the original object with another method
-  condiments.addCondiment = function() {
-    return;
+  condiments.addCondiment = function(ingredientSelected) {
+    return condimentPrices[ingredientSelected];
   };
 
 

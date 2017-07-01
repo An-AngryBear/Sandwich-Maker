@@ -19,8 +19,8 @@ var SandwichMaker = (function(maker) {
   	return cheeses;
 	}
   // Augment the original object with another method
-	cheese.addCheese = function(valueSelectedByUser) {
-    	return;
+	cheese.addCheese = function(ingredientSelected) {
+    	return cheesePrices[ingredientSelected];
 	};
 
 	maker.Cheese = cheese;
