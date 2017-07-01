@@ -26,7 +26,6 @@ var SandwichMaker = (function(maker) {
 		console.log(totalPrice);
 	}
 
-
 	// adjust the pending prices based on quantity selected
 	calculator.quantityMultiplier = function(price, quantity, ingredientType, ingredientSubType) {
 		let multipliedPrice = price * quantity;
@@ -52,9 +51,10 @@ var SandwichMaker = (function(maker) {
 	calculator.getPrice = function() {
 		return totalPrice;
 	}
-	maker.Calc = calculator;
 
+	maker.Calc = calculator;
 	return maker
+
 })(SandwichMaker || {});
 
 

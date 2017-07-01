@@ -1,17 +1,7 @@
-// Variable to hold the final price. Default to 0.
-var finalSandwichPrice = 0;
+const ingredientsOutput = document.getElementById("ingredients"),
+	priceOutput = document.getElementById("display-box");
 
-// Variable to hold topping that the user selects
-var selectedTopping;
-
-// Get a reference to the <select> element that has all the meat options
-const meatChooser = document.getElementById("meats-chooser"),
-	veggiesChooser = document.getElementById("veggies-chooser"),
-	breadsChooser = document.getElementById("breads-chooser"),
-	condimentsChooser = document.getElementById("condiments-chooser"),
-	cheeseChooser = document.getElementById("cheese-chooser"),
-	ingredientsOutput = document.getElementById("ingredients");
-
+// dynamically places checkboxes and labels into the document based on ingredient/price objects on ingredient modules
 function putSectionBoxesInDom() {
 	let ingredientObject = {
 		"Breads": SandwichMaker.Bread.returnBreadNames(),
@@ -30,25 +20,15 @@ function putSectionBoxesInDom() {
 				<checkboxcontainer><input type="checkbox" name="${key}" class="checkbox"><label>${ingredientObject[key][2]}</label></checkboxcontainer>
 				<checkboxcontainer><input type="checkbox" name="${key}" class="checkbox"><label>${ingredientObject[key][3]}</label></checkboxcontainer>
 				<checkboxcontainer><input type="checkbox" name="${key}" class="checkbox"><label>${ingredientObject[key][4]}</label></checkboxcontainer>
-			</select>`;
+			</section>`;
 		ingredientsOutput.appendChild(toStickInDom);
 
 	}
 }
 
-function iDontKnowYet(addIngredientFunction) {
-	let priceToAdd = addIngredientFunction(event.target.nextSibling.nextSibling.innerHTML);
-	let ingredientSubType = event.target.nextSibling.nextSibling.innerHTML
-	SandwichMaker.Calc.quantityMultiplier(priceToAdd, event.target.value, ingredientType, ingredientSubType);
-}
-
-putSectionBoxesInDom();
-/*
-  A <select> element broadcasts a change event, so you listen for it
-  and get the value of the topping from your augmented IIFE
-// */
+// listens for the change in value of the number input boxes, sends information to the calculator to calculate final price in real time
 document.addEventListener("input", function() {
-	if(event.target.hasAttribute('placeholder')) {
+	if(event.target.hasAttribute('placeholder') && event.target.value >= 0) {
 		let ingredientType = event.target.parentNode.parentNode.parentNode.firstChild.innerHTML;
 		let ingredientSubType = event.target.nextSibling.nextSibling.innerHTML;
 		switch(event.target.parentNode.parentNode.id) {
@@ -75,10 +55,25 @@ document.addEventListener("input", function() {
 			default:
 				console.log("error identifying ingredient");
 		};
+		adjustPriceDisplay();
+
 	}
 
 })
 
+// uses the final price to update the documents display box
+function adjustPriceDisplay() {
+	let priceToAppend = document.createElement('p'),
+		displayText = document.createElement('h3');
+	priceToAppend.setAttribute("class", "price")
+	priceOutput.innerHTML = "";
+	displayText.innerHTML = `<h3>Final Sandwich Price:</h3>`;
+	priceToAppend.innerHTML = `$${SandwichMaker.Calc.getPrice()}`;
+	priceOutput.append(displayText, priceToAppend);
+}
+
+// Listens for a checkbox to be checked. If checked, inserts an ingredient quantity box next to the checked selection.
+// If unchecked, removes the number input box
 ingredientsOutput.addEventListener("change", function() {
 	if(event.target.hasAttribute("name")) {
 		if(event.target.checked) {
@@ -89,13 +84,14 @@ ingredientsOutput.addEventListener("change", function() {
 			howMany.setAttribute('placeholder', "Portions?")
 			event.target.parentNode.insertBefore(howMany, event.target);
 		} else if (event.target.previousSibling.hasAttribute('class') && event.target.previousSibling.classList.contains('howManyBox')) {
+			let ingredientType = event.target.parentNode.parentNode.parentNode.firstChild.innerHTML;
+			let ingredientSubType = event.target.nextSibling.innerHTML;
+			SandwichMaker.Calc.quantityMultiplier(0, 0, ingredientType, ingredientSubType);
 			event.target.previousSibling.remove();
+			adjustPriceDisplay();
 		}
 	}
 })
 
-
-  // Determine the price of the topping chosen
-
-  // Add the topping to the SandwichMaker to increase the total price
-// });
+putSectionBoxesInDom();
+adjustPriceDisplay();
