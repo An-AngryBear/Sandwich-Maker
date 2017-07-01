@@ -27,6 +27,7 @@ h2 {
 	background-color: rgba(255, 255, 255, .5);
 	padding: 1em;
 	box-shadow: 2px 2px 20px black;
+	min-width: 650px;
 }
 
 .head-label {
@@ -51,6 +52,7 @@ checkboxcontainer label {
 .howManyBox, h3, h2, .price, .display-box, .ingredients {
 	text-align: center;
 }
+
 .howManyBox {
 	width: 2.2em;
 }
@@ -65,6 +67,7 @@ h3 {
 	width:30%;
 	margin: 1em auto 2em auto;
 	height: 120px;
+	min-width: 220px;
 }
 
 
