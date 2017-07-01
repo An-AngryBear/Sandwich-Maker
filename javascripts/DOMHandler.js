@@ -26,7 +26,7 @@ function putSectionBoxesInDom() {
 	}
 }
 
-// listens for the change in value of the number input boxes, sends information to the calculator to calculate final price in real time
+// listens for the change in value of any number input box, sends information to the calculator to calculate final price in real time
 document.addEventListener("input", function() {
 	if(event.target.hasAttribute('placeholder') && event.target.value >= 0) {
 		let ingredientType = event.target.parentNode.parentNode.parentNode.firstChild.innerHTML;

@@ -1,6 +1,5 @@
 var SandwichMaker = (function(maker) {
 
-  // Private variable to store the different meat prices
 	var cheesePrices = {
 	  	"Cheddar": 0.50,
 	  	"Swiss": 0.50,
@@ -12,18 +11,18 @@ var SandwichMaker = (function(maker) {
 	let cheese = Object.create(null);
 
 	cheese.returnCheeseNames = function() {
-  	let cheeses = [];
-  	for (key in cheesePrices) {
-  		cheeses.push(key);
-  	}
-  	return cheeses;
-	}
-  // Augment the original object with another method
+	  	let cheeses = [];
+	  	for (key in cheesePrices) {
+	  		cheeses.push(key);
+	  	}
+	  	return cheeses;
+	};
+
 	cheese.addCheese = function(ingredientSelected) {
     	return cheesePrices[ingredientSelected];
 	};
 
 	maker.Cheese = cheese;
-  // Return the new, augmented object with the new method on it
 	return maker;
+
 })(SandwichMaker || {});
